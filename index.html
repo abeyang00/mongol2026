@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="abeandsungmongol 몽골 여행 일정, 숙소, 지도 동선, 준비물 체크리스트"
+    >
+    <title>abeandsungmongol | Mongolia Trip 2026</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="assets/mongolia-hero.webp" as="image">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="abeandsungmongol 홈으로 이동">
+        <span class="brand-mark" aria-hidden="true">A/S</span>
+        <span>abeandsungmongol</span>
+      </a>
+      <nav class="nav-links" aria-label="주요 섹션">
+        <a href="#tickets">항공</a>
+        <a href="#daily">일정</a>
+        <a href="#stays">숙소</a>
+        <a href="#packing">준비물</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <img
+          class="hero-image"
+          src="assets/mongolia-hero.webp"
+          alt="해질녘 몽골 초원과 멀리 이어지는 길"
+        >
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow">2026.08.14 - 2026.08.18</p>
+          <h1>abeandsungmongol</h1>
+          <p class="hero-copy">
+            몽골 여행 일정, 숙소, 지도 동선, 준비물 체크를 한 화면에서 확인하는 공유 플래너.
+          </p>
+          <div class="hero-actions" aria-label="빠른 이동">
+            <a class="button primary" href="#daily">일정 보기</a>
+            <a class="button secondary" href="#packing">준비물 체크</a>
+          </div>
+          <dl class="trip-facts" aria-label="여행 요약">
+            <div>
+              <dt>기간</dt>
+              <dd>4박 5일</dd>
+            </div>
+            <div>
+              <dt>상태</dt>
+              <dd>초안 작성 중</dd>
+            </div>
+            <div>
+              <dt>지도</dt>
+              <dd>Google Maps 연동</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section intro-section" aria-labelledby="overview-title">
+        <div class="section-heading">
+          <p class="section-kicker">Overview</p>
+          <h2 id="overview-title">이번 여행의 기준점</h2>
+        </div>
+        <div class="overview-grid">
+          <article class="overview-panel countdown-panel">
+            <p class="panel-label">출발까지</p>
+            <p class="countdown" id="countdown">계산 중</p>
+            <p class="muted" id="countdownDetail">2026년 8월 14일 출발 기준</p>
+          </article>
+          <article class="overview-panel">
+            <p class="panel-label">여행 일자</p>
+            <p class="panel-value">2026.08.14 - 2026.08.18</p>
+            <p class="muted">금요일 출발, 화요일 귀국 예정</p>
+          </article>
+          <article class="overview-panel">
+            <p class="panel-label">자료 반영</p>
+            <p class="panel-value">티켓 / 일정 / 숙소 첨부 대기</p>
+            <p class="muted">첨부 파일을 받으면 세부 시간표와 지도 동선을 채웁니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="tickets" aria-labelledby="tickets-title">
+        <div class="section-heading">
+          <p class="section-kicker">Tickets</p>
+          <h2 id="tickets-title">항공권 일정</h2>
+        </div>
+        <div class="ticket-grid" id="ticketGrid"></div>
+      </section>
+
+      <section class="section daily-section" id="daily" aria-labelledby="daily-title">
+        <div class="section-heading">
+          <p class="section-kicker">Itinerary</p>
+          <h2 id="daily-title">날짜별 계획과 동선</h2>
+        </div>
+
+        <div class="day-tabs" id="dayTabs" role="tablist" aria-label="날짜 선택"></div>
+
+        <div class="daily-layout">
+          <article class="day-panel" aria-live="polite">
+            <div class="day-panel-header">
+              <div>
+                <p class="panel-label" id="activeDayDate"></p>
+                <h3 id="activeDayTitle"></h3>
+              </div>
+              <a
+                class="button map-button"
+                id="directionsLink"
+                href="https://www.google.com/maps"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Google Maps 열기</a>
+            </div>
+            <p class="day-summary" id="activeDaySummary"></p>
+            <ol class="timeline" id="dayTimeline"></ol>
+          </article>
+
+          <aside class="route-panel" aria-label="지도와 동선">
+            <div class="map-shell">
+              <div class="map-backdrop" aria-hidden="true">
+                <span class="map-road road-one"></span>
+                <span class="map-road road-two"></span>
+                <span class="map-pin pin-one"></span>
+                <span class="map-pin pin-two"></span>
+                <span class="map-pin pin-three"></span>
+              </div>
+              <iframe
+                id="routeMap"
+                title="선택한 날짜의 Google Maps 동선"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Mongolia&output=embed"
+              ></iframe>
+            </div>
+            <div class="route-list" id="routeList"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="stays" aria-labelledby="stays-title">
+        <div class="section-heading">
+          <p class="section-kicker">Stays</p>
+          <h2 id="stays-title">숙소 계획</h2>
+        </div>
+        <div class="stay-list" id="stayList"></div>
+      </section>
+
+      <section class="section packing-section" id="packing" aria-labelledby="packing-title">
+        <div class="section-heading">
+          <p class="section-kicker">Checklist</p>
+          <h2 id="packing-title">갈 때 필요한 것</h2>
+        </div>
+        <div class="packing-tools">
+          <div>
+            <p class="progress-label" id="packingProgressText">0 / 0 완료</p>
+            <div class="progress-track" aria-hidden="true">
+              <span class="progress-bar" id="packingProgressBar"></span>
+            </div>
+          </div>
+          <button class="button subtle" id="resetPacking" type="button">체크 초기화</button>
+        </div>
+        <div class="packing-grid" id="packingGrid"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>abeandsungmongol · GitHub Pages ready · 자료를 받는 대로 세부 일정 업데이트</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
