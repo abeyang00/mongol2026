@@ -1,5 +1,5 @@
 const tripData = {
-  name: "abeandsungmongol",
+  name: "Abe and Sung Mongol Trip 26'",
   dates: {
     start: "2026-08-14",
     end: "2026-08-18",
@@ -269,7 +269,7 @@ const tripData = {
   },
 };
 
-const storageKey = "abeandsungmongol-packing";
+const storageKey = "mongol2026-packing";
 let activeDayIndex = 0;
 let packingState = readPackingState();
 
