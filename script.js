@@ -282,12 +282,28 @@ const tripData = {
   ],
   stays: [
     {
-      date: "2026.08.14 - 08.18",
-      name: "숙소 자료 첨부 대기",
-      status: "미확정",
-      address: "주소를 넣으면 Google Maps 링크가 연결됩니다.",
-      mapQuery: "Ulaanbaatar Mongolia",
-      note: "예약번호, 체크인/체크아웃, 조식, 공항 이동 정보를 정리할 예정입니다.",
+      date: "2026.08.14",
+      name: "항가이리조트",
+      status: "확정",
+      address: "몽골 청헤르 온천",
+      mapQuery: "Khustain Nuruu National Park Mongolia",
+      note: "온천 리조트",
+    },
+    {
+      date: "2026.08.15",
+      name: "비칙하드",
+      status: "확정",
+      address: "몽골 엘승타사르하이",
+      mapQuery: "Elsen Tasarkhai Sand Dunes Mongolia",
+      note: "사막 캠프",
+    },
+    {
+      date: "2026.08.16 - 08.17",
+      name: "테를지로얄",
+      status: "확정",
+      address: "몽골 테를지 국립공원",
+      mapQuery: "Gorkhi Terelj National Park Mongolia",
+      note: "테를지 로얄 리조트",
     },
   ],
   packing: {
@@ -295,7 +311,7 @@ const tripData = {
     "돈 / 통신": ["해외 사용 카드", "현금 및 환전 계획", "eSIM 또는 로밍", "오프라인 지도", "번역 앱"],
     "전자기기": ["휴대폰 충전기", "보조배터리", "멀티 어댑터", "카메라 및 메모리카드", "이어폰"],
     "의류": ["바람막이", "긴팔 상의", "편한 바지", "걷기 좋은 신발", "모자와 선글라스"],
-    "건강 / 위생": ["상비약", "선크림", "립밤", "물티슈", "개인 세면도구"],
+    "건강 / 위생": ["상비약", "선크림", "립밤", "물티슈", "개인 세면도구", "샤워 헤드", "샤워 필터", "마우스 피스"],
   },
 };
 
