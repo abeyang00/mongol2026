@@ -255,6 +255,10 @@ input {
   padding-top: 58px;
 }
 
+.intro-section .countdown-panel {
+  max-width: 320px;
+}
+
 .section-heading {
   display: flex;
   align-items: end;

@@ -1,5 +1,5 @@
 const tripData = {
-  name: "Abe and Sung Mongol Trip 26'",
+  name: "Mongol Trip 26'",
   dates: {
     start: "2026-08-14",
     end: "2026-08-18",
@@ -42,9 +42,9 @@ const tripData = {
           mapQuery: "Ulaanbaatar supermarket Mongolia",
         },
         {
-          name: "청헤르 온천",
+          name: "항가이리조트 (Nomin Khangai Resort)",
           detail: "14:00 도착, 온천 후 휴식",
-          mapQuery: "Tsenkher Hot Spring Mongolia",
+          mapQuery: "Nomin Khangai Resort",
         },
       ],
       schedule: [
@@ -70,7 +70,7 @@ const tripData = {
         },
         {
           time: "14:00",
-          title: "청헤르 도착",
+          title: "항가이리조트 도착",
           text: "온천 후 휴식.",
         },
         {
@@ -88,14 +88,14 @@ const tripData = {
       summary: "숙소 조식 후 엘승타사르하이로 이동해 사막 트래킹, 모래썰매, 낙타체험.",
       stops: [
         {
-          name: "청헤르 온천",
+          name: "항가이리조트 (Nomin Khangai Resort)",
           detail: "08:00 조식 후 출발 준비",
-          mapQuery: "Tsenkher Hot Spring Mongolia",
+          mapQuery: "Nomin Khangai Resort",
         },
         {
-          name: "엘승타사르하이",
+          name: "비칙하드 (Bichigt Khad Tourist Camp)",
           detail: "16:00 도착, 사막 액티비티",
-          mapQuery: "Elsen Tasarkhai Sand Dunes Mongolia",
+          mapQuery: "9R88+63W Bichigt Khad, Ulaanshiveet, Bulgan, Mongolia",
         },
       ],
       schedule: [
@@ -116,7 +116,7 @@ const tripData = {
         },
         {
           time: "16:00",
-          title: "엘승타사르하이 도착",
+          title: "비칙하드 도착",
           text: "사막트래킹, 모래썰매, 낙타체험.",
         },
         {
@@ -134,9 +134,9 @@ const tripData = {
       summary: "울란바토르 쇼핑 경유 후 테를지 국립공원에서 사원, 바위 트래킹, 승마 체험.",
       stops: [
         {
-          name: "엘승타사르하이",
+          name: "비칙하드 (Bichigt Khad Tourist Camp)",
           detail: "09:00 테를지 방향 출발",
-          mapQuery: "Elsen Tasarkhai Sand Dunes Mongolia",
+          mapQuery: "9R88+63W Bichigt Khad, Ulaanshiveet, Bulgan, Mongolia",
         },
         {
           name: "울란바토르 캐시미어 팩토리",
@@ -163,6 +163,11 @@ const tripData = {
           detail: "트래킹 및 승마체험",
           mapQuery: "Turtle Rock Mongolia",
         },
+        {
+          name: "테를지로얄 (Lodge Resort)",
+          detail: "18:00 체크인",
+          mapQuery: "Lodge Resort Terelj Ulaanbaatar Mongolia",
+        },
       ],
       schedule: [
         {
@@ -172,7 +177,7 @@ const tripData = {
         },
         {
           time: "09:00",
-          title: "엘승타사르하이에서 테를지로 이동",
+          title: "비칙하드에서 테를지로 이동",
           text: "울란바토르를 경유하는 이동 일정.",
         },
         {
@@ -191,6 +196,11 @@ const tripData = {
           text: "아리아발 사원, 거북이 바위 트래킹, 승마체험.",
         },
         {
+          time: "18:00",
+          title: "테를지로얄 체크인",
+          text: "숙소 체크인 후 휴식.",
+        },
+        {
           time: "20:00",
           title: "석식",
           text: "허르헉. 석식: 숙소 제공.",
@@ -201,8 +211,8 @@ const tripData = {
       id: "day4",
       day: "D4",
       date: "08.17 월",
-      title: "테를지 → 칭기즈 칸 마동상 → 공항",
-      summary: "테를지에서 액티비티와 트래킹을 즐긴 뒤 칭기즈 칸 마동상을 방문하고 공항으로 이동.",
+      title: "테를지 → 칭기즈 칸 마동상 → 울란바토르 숙소",
+      summary: "테를지에서 액티비티와 트래킹을 즐긴 뒤 칭기즈 칸 마동상을 방문하고 울란바토르 숙소(본존호텔)로 이동.",
       stops: [
         {
           name: "테를지 국립공원",
@@ -215,9 +225,9 @@ const tripData = {
           mapQuery: "Chinggis Khaan Statue Complex Mongolia",
         },
         {
-          name: "칭기즈 칸 국제공항",
-          detail: "15:00 공항 샌딩",
-          mapQuery: "Chinggis Khaan International Airport Mongolia",
+          name: "본존호텔 (Soyolj Mall)",
+          detail: "15:00 숙소 체크인",
+          mapQuery: "Bojon Hotel Ulaanbaatar Soyolj Mall",
         },
       ],
       schedule: [
@@ -243,8 +253,13 @@ const tripData = {
         },
         {
           time: "15:00",
-          title: "공항 샌딩",
-          text: "칭기즈 칸 국제공항으로 이동.",
+          title: "울란바토르 숙소 이동",
+          text: "본존호텔(Soyolj Mall) 체크인.",
+        },
+        {
+          time: "TO-DO",
+          title: "저녁 일정 (미정)",
+          text: "아직 정하지 않음 — 자유 일정 또는 저녁 식사 장소를 정해야 함.",
         },
       ],
     },
@@ -252,30 +267,45 @@ const tripData = {
       id: "day5",
       day: "D5",
       date: "08.18 화",
-      title: "귀국",
-      summary: "귀국 항공편 시간 기준으로 체크아웃, 공항 이동, 식사 일정을 맞춥니다.",
+      title: "숙소 정리 → 공항 이동 → 귀국",
+      summary: "본존호텔에서 체크아웃 후 칭기즈 칸 국제공항(약 52.5km, 차량 약 1시간~1시간 20분)으로 이동해 귀국 항공편(13:00 출발) 탑승.",
       stops: [
         {
-          name: "울란바토르 숙소",
-          detail: "숙소 자료 첨부 후 주소 확정",
-          mapQuery: "Ulaanbaatar Mongolia",
+          name: "본존호텔 (Soyolj Mall)",
+          detail: "08:30 체크아웃",
+          mapQuery: "Bojon Hotel Ulaanbaatar Soyolj Mall",
         },
         {
           name: "칭기즈 칸 국제공항",
-          detail: "귀국 항공편",
+          detail: "10:15 도착, 귀국 항공편",
           mapQuery: "Chinggis Khaan International Airport Mongolia",
         },
       ],
       schedule: [
         {
-          time: "체크아웃",
-          title: "숙소 정리",
-          text: "숙소 체크아웃 시간과 짐 보관 가능 여부를 반영합니다.",
+          time: "07:30",
+          title: "기상 및 조식",
+          text: "숙소에서 조식 후 짐 정리.",
         },
         {
-          time: "항공권 시간",
-          title: "공항 이동 및 귀국",
-          text: "귀국 항공편 시간에 맞춰 출발 시간을 계산합니다.",
+          time: "08:30",
+          title: "숙소 체크아웃",
+          text: "본존호텔(Soyolj Mall) 체크아웃.",
+        },
+        {
+          time: "09:00",
+          title: "공항으로 출발",
+          text: "본존호텔 → 칭기즈 칸 국제공항, 약 52.5km · 평시 1시간~1시간 20분 소요(구글맵 실시간 기준 1시간 8분). 출근 시간대 정체를 감안해 여유 있게 출발.",
+        },
+        {
+          time: "10:15",
+          title: "공항 도착",
+          text: "출발 약 2시간 45분 전 도착, 수속 및 탑승 준비.",
+        },
+        {
+          time: "13:00",
+          title: "귀국 항공편 출발",
+          text: "대한항공 KE2042, UBN → ICN T2.",
         },
       ],
     },
@@ -285,25 +315,33 @@ const tripData = {
       date: "2026.08.14",
       name: "항가이리조트",
       status: "확정",
-      address: "몽골 청헤르 온천",
-      mapQuery: "Khustain Nuruu National Park Mongolia",
+      address: "Nomin Khangai Resort, Tsenkher, Arkhangai, Mongolia",
+      mapQuery: "Nomin Khangai Resort",
       note: "온천 리조트",
     },
     {
       date: "2026.08.15",
       name: "비칙하드",
       status: "확정",
-      address: "몽골 엘승타사르하이",
-      mapQuery: "Elsen Tasarkhai Sand Dunes Mongolia",
+      address: "9R88+63W Bichigt Khad, 1st Bag, Ulaanshiveet, Bulgan, Mongolia",
+      mapQuery: "9R88+63W Bichigt Khad, Ulaanshiveet, Bulgan, Mongolia",
       note: "사막 캠프",
     },
     {
       date: "2026.08.16 - 08.17",
       name: "테를지로얄",
       status: "확정",
-      address: "몽골 테를지 국립공원",
-      mapQuery: "Gorkhi Terelj National Park Mongolia",
+      address: "Lodge Resort, Terelj, Ulaanbaatar, Mongolia",
+      mapQuery: "Lodge Resort Terelj Ulaanbaatar Mongolia",
       note: "테를지 로얄 리조트",
+    },
+    {
+      date: "2026.08.17 - 08.18",
+      name: "본존호텔",
+      status: "확정",
+      address: "Narnii road 5-1, Soyolj Mall 11F, Ulaanbaatar 14230, Mongolia",
+      mapQuery: "Bojon Hotel Ulaanbaatar Soyolj Mall",
+      note: "울란바토르 시내 호텔",
     },
   ],
   packing: {
