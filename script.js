@@ -346,7 +346,7 @@ const tripData = {
   ],
   packing: {
     "필수 서류": ["여권"],
-    "돈 / 통신": ["트레블월렛 카드", "현금 (30만원)"],
+    "돈 / 통신": ["트레블월렛 카드"],
     "전자기기": ["휴대폰 충전기", "보조배터리", "카메라 및 메모리카드", "이어폰", "삼각대"],
     "의류": [
       "바람막이",
@@ -357,19 +357,23 @@ const tripData = {
       "선글라스",
       "팬티 5개",
       "양말 5개",
-      "반바지 2개",
+      "운동 반바지 2개",
       "긴바지 2개",
+      "긴팔 1개",
+      "반팔 티셔츠 4개",
+      "민소매 2개",
       "ROKA 티셔츠 2개",
       "수영복",
     ],
     "건강 / 위생": [
       "상비약",
       "립밤",
-      "물티슈",
-      "개인 세면도구",
+      "물티슈 / 티슈",
       "칫솔",
       "치약",
-      "샤워 헤드",
+      "클렌징 오일",
+      "손 소독제",
+      "모기 기피제",
       "샤워 필터",
       "마우스 피스",
       "데오드런트",
@@ -377,10 +381,9 @@ const tripData = {
       "수건 4개",
     ],
     "화장품": [
-      "화장솜 10개",
+      "화장솜",
       "토너",
-      "비타C 세럼",
-      "컨트롤 세럼",
+      "세럼 (비타C, 컨트롤)",
       "레티놀",
       "얼굴 크림",
       "폼 클렌징",
@@ -455,26 +458,81 @@ function renderCountdown() {
   detail.textContent = "여행 기록으로 보관 중";
 }
 
+const icons = {
+  takeoff:
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16h16"/><path d="M3.6 11.3l1.5-.4 2.4 1.3 3.9-1.1-4.2-4.4 1.6-.4 5.4 3.5 2.4-.6a1.3 1.3 0 01.7 2.5L5.7 14.6z"/></svg>',
+  landing:
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16h16"/><path d="M3.2 9.4l1.4.6 2 2 4 1.1-2-5.7 1.5.4 3.4 5.3 2.4.6a1.3 1.3 0 00.6-2.5L4.4 5.9z"/></svg>',
+  plane:
+    '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M18.4 9.2L12 7.6 8.2 2.3a.7.7 0 00-.6-.3H6.2c-.4 0-.7.4-.6.8L7.1 7.1 3.5 6.2 2.4 4.5a.6.6 0 00-.5-.3h-.7c-.4 0-.6.3-.5.7l1 4.9c0 .1 0 .3 0 .4l-1 4.9c-.1.4.1.7.5.7h.7c.2 0 .4-.1.5-.3l1.1-1.7 3.6-.9-1.5 4.3c-.1.4.2.8.6.8h1.4c.2 0 .5-.1.6-.3l3.8-5.3 6.4-1.6a.9.9 0 000-1.6z"/></svg>',
+  bed:
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 15V6"/><path d="M2.5 11.5h15V15"/><path d="M17.5 11.5V9.2a1.7 1.7 0 00-1.7-1.7H9.5v4"/><circle cx="6" cy="9.4" r="1.6"/></svg>',
+};
+
+const packingIcons = {
+  "필수 서류":
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2.5h7l3.2 3.2V17a.5.5 0 01-.5.5H5a.5.5 0 01-.5-.5V3a.5.5 0 01.5-.5z"/><path d="M11.7 2.7v3.3H15"/><path d="M7.3 11h5.4M7.3 13.7h3.6"/></svg>',
+  "돈 / 통신":
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.2" y="5" width="15.6" height="10" rx="1.8"/><path d="M2.2 8.4h15.6"/><path d="M5.4 12.2h2.8"/></svg>',
+  "전자기기":
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="1.8" width="8" height="16.4" rx="2"/><path d="M8.8 15.6h2.4"/></svg>',
+  "의류":
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.6 2.6L3 5.1l1.5 3.2 1.6-.7V17h7.8V7.6l1.6.7L17 5.1l-4.6-2.5a2.5 2.5 0 01-4.8 0z"/></svg>',
+  "건강 / 위생":
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17.2S3.3 13 3.3 8.3a3.8 3.8 0 016.7-2.4 3.8 3.8 0 016.7 2.4c0 4.7-6.7 8.9-6.7 8.9z"/></svg>',
+  "화장품":
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.6 7.4h4.8a1.6 1.6 0 011.6 1.7l-.5 7.2a1.2 1.2 0 01-1.2 1.1H7.7a1.2 1.2 0 01-1.2-1.1L6 9.1a1.6 1.6 0 011.6-1.7z"/><path d="M8.4 7.4V4.2a1.6 1.6 0 013.2 0v3.2"/></svg>',
+  "기타":
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6.2" width="15" height="10.3" rx="2"/><path d="M7.2 6.2V4.6a1.6 1.6 0 011.6-1.6h2.4a1.6 1.6 0 011.6 1.6v1.6"/><path d="M2.5 10.6h15"/></svg>',
+};
+
+function splitArrow(value) {
+  return String(value)
+    .split("→")
+    .map((part) => part.trim());
+}
+
 function renderTickets() {
   const grid = $("#ticketGrid");
   grid.innerHTML = "";
 
-  tripData.tickets.forEach((ticket) => {
-    const card = createElement("article", "ticket-card");
-    const top = createElement("div", "ticket-topline");
-    const title = createElement("h3", "", ticket.label);
-    const status = createElement("span", "status-chip", ticket.status);
-    top.append(title, status);
+  tripData.tickets.forEach((ticket, index) => {
+    const [origin = "", destination = ""] = splitArrow(ticket.route);
+    const [departure = "", arrivalRaw = ""] = splitArrow(ticket.time);
+    const durationMatch = arrivalRaw.match(/\(([^)]+)\)/);
+    const duration = durationMatch ? durationMatch[1] : "";
+    const arrival = arrivalRaw.replace(/\s*\([^)]*\)\s*/, "").trim();
+    const isOutbound = index === 0;
 
-    const route = createElement("p", "ticket-route", ticket.route);
-    const details = createElement("ul", "detail-list");
-    details.innerHTML = `
-      <li><strong>날짜</strong> ${ticket.date}</li>
-      <li><strong>시간</strong> ${ticket.time}</li>
-      <li>${ticket.note}</li>
+    const card = createElement("article", "ticket-card");
+    card.setAttribute("data-reveal", "");
+    card.innerHTML = `
+      <div class="ticket-head">
+        <span class="ticket-label">
+          ${isOutbound ? icons.takeoff : icons.landing}
+          ${ticket.label}
+          <span class="ticket-date">${ticket.date}</span>
+        </span>
+        <span class="status-chip">${ticket.status}</span>
+      </div>
+      <div class="ticket-body">
+        <div class="ticket-port">
+          <strong>${origin}</strong>
+          <span>${departure}</span>
+        </div>
+        <div class="ticket-path">
+          <span class="ticket-duration">${duration}</span>
+          <span class="ticket-line"></span>
+          ${icons.plane}
+        </div>
+        <div class="ticket-port is-end">
+          <strong>${destination}</strong>
+          <span>${arrival}</span>
+        </div>
+      </div>
+      <p class="ticket-note">${ticket.note}</p>
     `;
 
-    card.append(top, route, details);
     grid.append(card);
   });
 }
@@ -537,6 +595,9 @@ function renderDailyPlan() {
   timeline.innerHTML = "";
   day.schedule.forEach((item) => {
     const row = document.createElement("li");
+    if (item.time === "TO-DO") {
+      row.className = "is-todo";
+    }
     row.innerHTML = `
       <time>${item.time}</time>
       <div>
@@ -568,7 +629,9 @@ function renderStays() {
 
   tripData.stays.forEach((stay) => {
     const item = createElement("article", "stay-item");
-    const date = createElement("div", "stay-date", stay.date);
+    item.setAttribute("data-reveal", "");
+    const date = createElement("div", "stay-date");
+    date.innerHTML = `${icons.bed}<span>${stay.date}</span>`;
     const detail = createElement("div");
     const titleLine = createElement("div", "stay-topline");
     const title = createElement("h3", "", stay.name);
@@ -599,7 +662,9 @@ function renderPacking() {
 
   Object.entries(tripData.packing).forEach(([category, items]) => {
     const card = createElement("article", "packing-card");
-    const title = createElement("h3", "", category);
+    card.setAttribute("data-reveal", "");
+    const title = createElement("h3", "");
+    title.innerHTML = `<span class="packing-icon">${packingIcons[category] || packingIcons["기타"]}</span>${category}`;
     const list = document.createElement("ul");
 
     items.forEach((item) => {
@@ -643,6 +708,48 @@ function resetPacking() {
   packingState = {};
   savePackingState();
   renderPacking();
+  observeReveals();
+}
+
+/* ---- presentation behaviour ---- */
+
+let revealObserver = null;
+
+function observeReveals() {
+  const targets = document.querySelectorAll("[data-reveal]:not(.is-visible)");
+
+  if (!("IntersectionObserver" in window)) {
+    targets.forEach((node) => node.classList.add("is-visible"));
+    return;
+  }
+
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, index) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          const delay = Math.min(index, 5) * 70;
+          setTimeout(() => entry.target.classList.add("is-visible"), delay);
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+    );
+  }
+
+  targets.forEach((node) => revealObserver.observe(node));
+}
+
+function watchScroll() {
+  const topbar = $("#topbar");
+  const setState = () => {
+    topbar.classList.toggle("is-scrolled", window.scrollY > 40);
+  };
+
+  setState();
+  window.addEventListener("scroll", setState, { passive: true });
 }
 
 function init() {
@@ -652,6 +759,8 @@ function init() {
   renderStays();
   renderPacking();
   $("#resetPacking").addEventListener("click", resetPacking);
+  watchScroll();
+  observeReveals();
 }
 
 init();
