@@ -328,7 +328,7 @@ const tripData = {
       note: "사막 캠프",
     },
     {
-      date: "2026.08.16 - 08.17",
+      date: "2026.08.16",
       name: "테를지로얄",
       status: "확정",
       address: "Lodge Resort, Terelj, Ulaanbaatar, Mongolia",
@@ -336,7 +336,7 @@ const tripData = {
       note: "테를지 로얄 리조트",
     },
     {
-      date: "2026.08.17 - 08.18",
+      date: "2026.08.17",
       name: "본존호텔",
       status: "확정",
       address: "Narnii road 5-1, Soyolj Mall 11F, Ulaanbaatar 14230, Mongolia",
