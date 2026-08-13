@@ -2,3 +2,11 @@ tmp/
 assets/mongolia-hero.png
 .DS_Store
 Thumbs.db
+
+# Phone originals stay local — only the resized WebPs in assets/photos/ are
+# committed. Git keeps every version forever, so multi-MB originals would
+# bloat the repo permanently even if deleted later.
+photos-raw/
+
+__pycache__/
+*.pyc

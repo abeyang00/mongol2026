@@ -1142,6 +1142,210 @@ em {
 }
 
 /* ------------------------------------------------------------
+   Day photos
+   ------------------------------------------------------------ */
+
+.day-photos {
+  margin-top: 20px;
+  padding: 24px 26px 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--card);
+  box-shadow: var(--sh-sm);
+}
+
+.day-photos-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.day-photos h4 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.day-photos h4 svg {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  color: var(--sage);
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 12px;
+}
+
+.photo-item {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 2;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--r);
+  background: var(--sage-tint);
+  cursor: zoom-in;
+  transition: transform 380ms var(--ease), box-shadow 380ms var(--ease);
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 620ms var(--ease);
+}
+
+.photo-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sh);
+}
+
+.photo-item:hover img {
+  transform: scale(1.06);
+}
+
+.photo-item:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--amber);
+}
+
+/* empty state — photos land here after the trip */
+.photo-empty {
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  padding: 36px 20px;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: var(--r);
+  color: var(--muted);
+  text-align: center;
+}
+
+.photo-empty strong {
+  color: var(--ink-soft);
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+.photo-empty span {
+  font-size: 13px;
+}
+
+/* ------------------------------------------------------------
+   Lightbox
+   ------------------------------------------------------------ */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 24px;
+  background: rgba(12, 18, 16, 0.94);
+  backdrop-filter: blur(6px);
+  animation: fade 240ms var(--ease);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lightbox-stage {
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  margin: 0;
+  min-width: 0;
+}
+
+.lightbox-stage img {
+  max-width: 100%;
+  max-height: calc(100vh - 140px);
+  border-radius: var(--r);
+  object-fit: contain;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-stage figcaption {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: rgba(255, 250, 240, 0.82);
+  font-size: 14px;
+  text-align: center;
+}
+
+.lightbox-counter {
+  color: rgba(255, 250, 240, 0.5);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+}
+
+.lightbox-nav,
+.lightbox-close {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid rgba(255, 250, 240, 0.22);
+  border-radius: 50%;
+  background: rgba(255, 250, 240, 0.08);
+  color: #fffaf0;
+  cursor: pointer;
+  transition: background 260ms var(--ease), transform 260ms var(--ease);
+}
+
+.lightbox-nav svg,
+.lightbox-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.lightbox-nav:hover,
+.lightbox-close:hover {
+  background: rgba(255, 250, 240, 0.2);
+  transform: scale(1.06);
+}
+
+.lightbox-nav:focus-visible,
+.lightbox-close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--amber);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+}
+
+/* ------------------------------------------------------------
    Stays
    ------------------------------------------------------------ */
 
@@ -1593,6 +1797,45 @@ em {
 
   .map-shell {
     min-height: 280px;
+  }
+
+  .day-photos {
+    padding: 20px 16px 22px;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .lightbox {
+    grid-template-columns: 1fr;
+    grid-template-areas: "stage";
+    padding: 16px;
+  }
+
+  .lightbox-stage {
+    grid-area: stage;
+  }
+
+  /* nav buttons overlay the image edges on small screens */
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    transform: translateY(-50%);
+  }
+
+  .lightbox-nav.prev {
+    left: 12px;
+  }
+
+  .lightbox-nav.next {
+    right: 12px;
+  }
+
+  .lightbox-nav:hover {
+    transform: translateY(-50%) scale(1.06);
   }
 }
 

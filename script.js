@@ -608,6 +608,8 @@ function renderDailyPlan() {
     timeline.append(row);
   });
 
+  renderDayPhotos(day);
+
   const routeList = $("#routeList");
   routeList.innerHTML = "";
   day.stops.forEach((stop, index) => {
@@ -620,6 +622,126 @@ function renderDailyPlan() {
       </div>
     `;
     routeList.append(stopRow);
+  });
+}
+
+/* ---- day photos + lightbox ---- */
+
+let activePhotos = [];
+let lightboxIndex = 0;
+let lightboxOpener = null;
+
+function getDayPhotos(day) {
+  const all = window.tripPhotos || {};
+  return Array.isArray(all[day.id]) ? all[day.id] : [];
+}
+
+function renderDayPhotos(day) {
+  const grid = $("#photoGrid");
+  const photos = getDayPhotos(day);
+
+  activePhotos = photos;
+  $("#dayPhotosLabel").textContent = `${day.day} 사진`;
+  $("#dayPhotosCount").textContent = photos.length ? `${photos.length}장` : "";
+  grid.innerHTML = "";
+
+  if (!photos.length) {
+    const empty = createElement("div", "photo-empty");
+    empty.innerHTML = `
+      <strong>아직 사진이 없습니다</strong>
+      <span>여행 다녀와서 사진을 추가하면 여기에 표시됩니다.</span>
+    `;
+    grid.append(empty);
+    return;
+  }
+
+  photos.forEach((photo, index) => {
+    const button = document.createElement("button");
+    button.className = "photo-item";
+    button.type = "button";
+    button.setAttribute("aria-label", `${index + 1}번째 사진 크게 보기`);
+    button.innerHTML = `
+      <img
+        src="${photo.thumb || photo.full}"
+        alt="${photo.caption || `${day.date} 여행 사진 ${index + 1}`}"
+        loading="lazy"
+        decoding="async"
+      >
+    `;
+    button.addEventListener("click", () => openLightbox(index, button));
+    grid.append(button);
+  });
+}
+
+function showLightboxPhoto(index) {
+  const photo = activePhotos[index];
+  if (!photo) {
+    return;
+  }
+
+  lightboxIndex = index;
+  const image = $("#lightboxImage");
+  image.src = photo.full;
+  image.alt = photo.caption || `여행 사진 ${index + 1}`;
+  $("#lightboxCaption").textContent = photo.caption || "";
+  $("#lightboxCounter").textContent = `${index + 1} / ${activePhotos.length}`;
+
+  const multiple = activePhotos.length > 1;
+  $("#lightboxPrev").hidden = !multiple;
+  $("#lightboxNext").hidden = !multiple;
+}
+
+function stepLightbox(offset) {
+  if (!activePhotos.length) {
+    return;
+  }
+  const next = (lightboxIndex + offset + activePhotos.length) % activePhotos.length;
+  showLightboxPhoto(next);
+}
+
+function openLightbox(index, opener) {
+  lightboxOpener = opener || null;
+  showLightboxPhoto(index);
+  $("#lightbox").hidden = false;
+  document.body.style.overflow = "hidden";
+  $("#lightboxClose").focus();
+}
+
+function closeLightbox() {
+  $("#lightbox").hidden = true;
+  $("#lightboxImage").removeAttribute("src");
+  document.body.style.overflow = "";
+  if (lightboxOpener) {
+    lightboxOpener.focus();
+    lightboxOpener = null;
+  }
+}
+
+function wireLightbox() {
+  const lightbox = $("#lightbox");
+
+  $("#lightboxClose").addEventListener("click", closeLightbox);
+  $("#lightboxPrev").addEventListener("click", () => stepLightbox(-1));
+  $("#lightboxNext").addEventListener("click", () => stepLightbox(1));
+
+  // click the backdrop (not the photo) to dismiss
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (lightbox.hidden) {
+      return;
+    }
+    if (event.key === "Escape") {
+      closeLightbox();
+    } else if (event.key === "ArrowLeft") {
+      stepLightbox(-1);
+    } else if (event.key === "ArrowRight") {
+      stepLightbox(1);
+    }
   });
 }
 
@@ -759,6 +881,7 @@ function init() {
   renderStays();
   renderPacking();
   $("#resetPacking").addEventListener("click", resetPacking);
+  wireLightbox();
   watchScroll();
   observeReveals();
 }
