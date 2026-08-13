@@ -9,7 +9,13 @@
     >
     <title>Mongol Trip 26'</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="preload" href="assets/mongolia-hero.webp" as="image">
+    <link
+      rel="preload"
+      href="assets/mongolia-hero.webp?v=2"
+      as="image"
+      imagesrcset="assets/mongolia-hero-1600.webp?v=2 1600w, assets/mongolia-hero.webp?v=2 3456w"
+      imagesizes="100vw"
+    >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -22,7 +28,7 @@
       crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
     >
-    <link rel="stylesheet" href="styles.css?v=20260813-ui1">
+    <link rel="stylesheet" href="styles.css?v=20260813-ui2">
   </head>
   <body>
     <header class="topbar" id="topbar">
@@ -40,17 +46,21 @@
 
     <main>
       <section class="hero" id="home">
+        <!-- Photo: Unsplash / @cukoonee — https://unsplash.com/photos/_D6eU2mEzXA -->
         <img
           class="hero-image"
-          src="assets/mongolia-hero.webp"
-          alt="해질녘 몽골 초원과 멀리 이어지는 길"
+          src="assets/mongolia-hero.webp?v=2"
+          srcset="assets/mongolia-hero-1600.webp?v=2 1600w, assets/mongolia-hero.webp?v=2 3456w"
+          sizes="100vw"
+          alt="황금빛 몽골 초원에서 풀을 뜯는 야생말 무리"
         >
         <div class="hero-shade" aria-hidden="true"></div>
         <div class="hero-content">
           <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>2026.08.14 — 2026.08.18</p>
           <h1>Mongol<br>Trip <em>26'</em></h1>
           <p class="hero-copy">
-            여행 일정, 숙소, 동선 및 준비물 체크를 확인하는 공유 플래너.
+            What happens in Ulaanbaatar stays in Ulaanbaatar.
+            <span class="punchline">Except for herpes — that shit'll come back with you.</span>
           </p>
           <div class="hero-actions" aria-label="빠른 이동">
             <a class="button primary" href="#daily">
